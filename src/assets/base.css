@@ -1,0 +1,17 @@
+body {
+    font-family: 'Arial';
+}
+
+ul {
+    list-style-type: none;
+
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
