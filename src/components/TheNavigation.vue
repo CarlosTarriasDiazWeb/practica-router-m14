@@ -1,23 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 
+import dades from "@/data.json";
+import { ref } from 'vue';
+
+const destinations = ref(dades.destinations);
+
 </script>
 <template>
     <ul class="w-100 d-flex flex-row justify-content-start align-items-center gap-3">
         <li>
             <RouterLink to="/">Home</RouterLink>
         </li>
-        <li>
-            <RouterLink to="/">Home</RouterLink>
-        </li>
-        <li>
-            <RouterLink to="/">Home</RouterLink>
-        </li>
-        <li>
-            <RouterLink to="/">Home</RouterLink>
-        </li>
-        <li>
-            <RouterLink to="/">Home</RouterLink>
+        <li v-for="destination in destinations" :key="destination.id">
+            <RouterLink :to="{ name: 'destination', params: { id: destination.id } }">{{
+                destination.name }}</RouterLink>
         </li>
     </ul>
 </template>
@@ -33,7 +30,8 @@ a {
 }
 
 a:active,
-a:focus {
+a:focus,
+a:hover {
     text-decoration: underline;
     color: white;
 }
