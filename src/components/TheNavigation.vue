@@ -9,7 +9,7 @@ const destinations = ref(dades.destinations);
 </script>
 <template>
     <ul class="w-100 d-flex flex-row justify-content-start align-items-center gap-3">
-        <li>
+        <li class="home-link">
             <RouterLink to="/">Home</RouterLink>
         </li>
         <li v-for="destination in destinations" :key="destination.id">
@@ -19,6 +19,10 @@ const destinations = ref(dades.destinations);
     </ul>
 </template>
 <style scoped>
+.home-link a {
+    font-size: xx-large;
+}
+
 ul {
     height: 100%;
 }

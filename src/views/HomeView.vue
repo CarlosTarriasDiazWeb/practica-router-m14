@@ -6,7 +6,7 @@ const destinations = ref(dades.destinations);
 
 <template>
   <main class="w-100 px-5 py-3 d-flex flex-column align-items-left justify-content-start">
-    <h1>All destinations</h1>
+    <h1 class="mb-4">All destinations</h1>
     <section class="imgs-box d-flex gap-2">
       <article v-for="destination in destinations" :key="destination.id">
         <h2>
@@ -28,7 +28,7 @@ h2 {
 
 main {
   height: 2000px;
-  background-color: rgb(248, 248, 248);
+  background-color: #eeeeee;
 }
 
 

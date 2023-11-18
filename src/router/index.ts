@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import DestinationView from '../views/DestinationView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,8 +12,30 @@ const router = createRouter({
     {
       path: '/destination/:id',
       name: 'destination',
-      component: () => import('@/views/DestinationView.vue')
-    }
+      component: () => import('@/views/DestinationView.vue'),
+      children: [
+        {
+          path: ':experienceSlug',
+          name: 'experience.show',
+          component: () => import('@/views/ExperienceView.vue'),
+        }
+      ]
+    },
+    //   {
+    //     path: '/destination/:id/:slug',
+    //     name: 'destination.show',
+    //     component: () => import('@/views/DestinationView.vue'),
+    //     props: route => ({ ...route.params.id: parseInt(route.params.id})
+    //   }),
+    // children: [
+    //   {
+    //     path: ':experienceSlug',
+    //     name: 'experience.show',
+    //     component: () => import(),
+    //     props: route
+    //   }
+    // ]
+    //   }
   ]
 })
 
