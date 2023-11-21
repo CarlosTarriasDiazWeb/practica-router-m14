@@ -38,12 +38,6 @@ watch(route, () => {
         <section class="my-4">
             <h2>Top experiences in {{ destinations.destinations[destinationId - 1].name }}</h2>
             <section class="d-flex gap-2">
-                <!-- <article v-for="experience in destinations.destinations[destinationId - 1].experiences">
-                    <div class="img-experience-box">
-                        <img :src="`/public/${experience.image}`" alt="Experience image">
-                        <p>{{ experience.name }}</p>
-                    </div>
-                </article> -->
                 <RouterLink v-for="experience in destinations.destinations[destinationId - 1].experiences"
                     :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }">
                     <ExperienceCard :experience="experience"></ExperienceCard>
