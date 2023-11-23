@@ -24,7 +24,6 @@ watch(route, () => {
         <div>
             <button @click="router.back()">go back</button>
         </div>
-
         <section class="d-flex gap-5 align-items-center">
             <div class="img-destination-box">
                 <img :src="`/${destinations.destinations[destinationId - 1].image}`" alt="destination image">

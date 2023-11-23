@@ -1,23 +1,43 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import dades from "@/data.json";
-import { computed, reactive } from 'vue';
+import { computed, reactive, type ComputedRef } from 'vue';
 
-const route = useRoute();
-const destinations: any = reactive(dades);
-const experience = computed(() => destinations.destinations.experiences.find((experience: any) => experience.slug = route.params.experienceSlug));
+const props = defineProps<{
+    id: number,
+    experienceSlug: string
+}>()
+
+interface Destination {
+    name: string;
+    slug: string;
+    image: string;
+    description: string;
+    id: number
+    experiences: Experience[]
+}
+
+interface Experience {
+    name: string;
+    slug: string;
+    image: string;
+    description: string;
+}
+
+const destination: Destination = reactive(dades.destinations[props.id - 1]);
+const experience: ComputedRef<Experience | undefined> = computed(() => destination.experiences.find((experience: Experience) => experience.slug === props.experienceSlug));
 
 </script>
 <template>
-    <h3>{{ route.params.experienceSlug }}</h3>
-    <!-- <div class="img-destination-box">
-        <img :src="`/${experience.image}`" alt="experience image">
+    <h3>{{ experienceSlug }}</h3>
+    <div class="img-destination-box">
+        <img :src="`/${experience?.image}`" alt="experience image">
     </div>
     <div class="destination-description-box">
         <p>
-            {{ experience.description }}
+            {{ experience?.description }}
         </p>
-    </div> -->
+    </div>
 </template>
 
 <style scoped>
@@ -31,7 +51,7 @@ h3 {
 }
 
 .img-destination-box>img {
-    width: 400px;
+    width: 600px;
     height: 400px;
 }
 </style>
