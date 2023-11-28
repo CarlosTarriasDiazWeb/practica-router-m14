@@ -8,7 +8,11 @@ import TheNavigation from './components/TheNavigation.vue';
     <TheNavigation></TheNavigation>
   </header>
   <div class="box">
-    <RouterView></RouterView>
+    <RouterView v-slot="{ Component }">
+      <Transition name="slide" mode="out-in">
+        <component :is="Component" :key="$route.path"></component>
+      </Transition>
+    </RouterView>
   </div>
 </template>
 
@@ -21,5 +25,16 @@ header {
 .box {
   margin: 0;
   width: 100%;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translate(-20%);
 }
 </style>

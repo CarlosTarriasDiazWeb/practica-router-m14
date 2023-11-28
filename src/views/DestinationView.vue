@@ -19,34 +19,37 @@ watch(route, () => {
 </script>
 
 <template>
-    <main class="w-100 px-5 py-3 d-flex flex-column gap-1 align-items-left justify-content-start">
-        <h1>{{ destinations.destinations[destinationId - 1].name }}</h1>
-        <div>
-            <button @click="router.back()">go back</button>
-        </div>
-        <section class="d-flex gap-5 align-items-center">
-            <div class="img-destination-box">
-                <img :src="`/${destinations.destinations[destinationId - 1].image}`" alt="destination image">
+    <div>
+        <main v-if="destinations.destinations[destinationId - 1]"
+            class="w-100 px-5 py-3 d-flex flex-column gap-1 align-items-left justify-content-start">
+            <h1>{{ destinations.destinations[destinationId - 1].name }}</h1>
+            <div>
+                <button @click="router.back()">go back</button>
             </div>
-            <div class="destination-description-box">
-                <p>
-                    {{ destinations.destinations[destinationId - 1].description }}
-                </p>
-            </div>
-        </section>
-        <section class="my-4">
-            <h2>Top experiences in {{ destinations.destinations[destinationId - 1].name }}</h2>
-            <section class="d-flex gap-2">
-                <RouterLink v-for="experience in destinations.destinations[destinationId - 1].experiences"
-                    :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }">
-                    <ExperienceCard :experience="experience"></ExperienceCard>
-                </RouterLink>
+            <section class="d-flex gap-5 align-items-center">
+                <div class="img-destination-box">
+                    <img :src="`/${destinations.destinations[destinationId - 1].image}`" alt="destination image">
+                </div>
+                <div class="destination-description-box">
+                    <p>
+                        {{ destinations.destinations[destinationId - 1].description }}
+                    </p>
+                </div>
             </section>
-        </section>
-        <section class="d-flex flex-column gap-2 w-100">
-            <RouterView></RouterView>
-        </section>
-    </main>
+            <section class="my-4">
+                <h2>Top experiences in {{ destinations.destinations[destinationId - 1].name }}</h2>
+                <section class="d-flex gap-2">
+                    <RouterLink v-for="experience in destinations.destinations[destinationId - 1].experiences"
+                        :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }">
+                        <ExperienceCard :experience="experience"></ExperienceCard>
+                    </RouterLink>
+                </section>
+            </section>
+            <section class="d-flex flex-column gap-2 w-100">
+                <RouterView></RouterView>
+            </section>
+        </main>
+    </div>
 </template>
 <style scoped>
 h1,
